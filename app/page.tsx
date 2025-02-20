@@ -1,9 +1,9 @@
 "use client";
 
 import React from 'react';
-import Dashboard from '@/components/Dashboard';
-import QueryInterface from '@/components/QueryInterface';
-import { Card, CardContent } from '@/components/ui/card';
+import Dashboard from '../components/Dashboard';
+import QueryInterface from '../components/QueryInterface';
+import { Card, CardContent } from '../components/ui/card';
 
 export default function Home() {
   return (

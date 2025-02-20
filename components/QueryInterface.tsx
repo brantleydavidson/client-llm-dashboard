@@ -1,12 +1,20 @@
 "use client";
 
 import React, { useState } from 'react';
-import { analysisDatabase } from '@/lib/data';
+import { analysisDatabase } from '../src/lib/data';
+import type { Finding } from '../src/lib/types';
+
+// ... at the top of your component, add these type definitions:
+type Platform = 'chatgpt' | 'claude' | 'grok' | 'gemini' | 'perplexity';
+type Category = 'technical' | 'brand' | 'content';
+type Subcategory = 'specifications' | 'manufacturing' | 'applications';
 
 export default function QueryInterface() {
-  const [platform, setPlatform] = useState('chatgpt');
-  const [category, setCategory] = useState('technical');
-  const [subcategory, setSubcategory] = useState('specifications');
+  const [platform, setPlatform] = useState<Platform>('chatgpt');
+  const [category, setCategory] = useState<Category>('technical');
+  const [subcategory, setSubcategory] = useState<Subcategory>('specifications');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Safely access nested data
   const findings =

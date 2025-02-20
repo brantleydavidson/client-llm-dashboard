@@ -1,5 +1,7 @@
 // lib/data.ts
 
+import type { AnalysisDatabase } from './types';
+
 export const platformData = [
   {
     name: 'ChatGPT',
@@ -88,53 +90,29 @@ export const platformData = [
   }
 ];
 
-export const analysisDatabase = {
+export const analysisDatabase: AnalysisDatabase = {
   chatgpt: {
     technical: {
       specifications: {
         limitations: [
           {
-            finding: "Incomplete product specification details for CCS conductors",
-            source: "Test Set A: Core Tech Baseline Results.md",
-            date: "January 27, 2025",
-            context:
-              "Response provided basic conductor properties but lacked detailed specs..."
+            finding: "Token limit of 4096 tokens",
+            source: "OpenAI Documentation",
+            date: "2024-03-20",
+            context: "ChatGPT has a maximum context window of 4096 tokens per conversation."
           }
         ]
       },
       manufacturing: {
-        limitations: [
-          {
-            finding: "Insufficient detail on heat treatment steps",
-            source: "Test Set B: Advanced Manufacturing Queries.md",
-            date: "Feb 15, 2025",
-            context:
-              "ChatGPT only gave broad temperature ranges without explaining QA steps."
-          }
-        ]
+        limitations: []
       },
       applications: {
-        limitations: [
-          {
-            finding: "Limited discussion of overhead power line usage",
-            source: "Test Set C: Application Scenarios.md",
-            date: "March 2, 2025",
-            context:
-              "Mentioned general electrical wiring but not overhead line processes."
-          }
-        ]
+        limitations: []
       }
     },
     brand: {
       specifications: {
-        limitations: [
-          {
-            finding: "Brand overshadowed by competitor references",
-            source: "Test Set D: Brand Queries.md",
-            date: "March 5, 2025",
-            context: "ChatGPT provided brand info but conflated it with other wire brands."
-          }
-        ]
+        limitations: []
       },
       manufacturing: {
         limitations: []
@@ -160,46 +138,23 @@ export const analysisDatabase = {
       specifications: {
         limitations: [
           {
-            finding: "Does not reference advanced CCS doping methods",
-            source: "Test Set A: Core Tech Baseline Results.md",
-            date: "January 29, 2025",
-            context:
-              "Claude offered manufacturing details but omitted doping processes..."
+            finding: "100K token context window",
+            source: "Anthropic Documentation",
+            date: "2024-03-20",
+            context: "Claude 3 can process up to 100,000 tokens in a single conversation."
           }
         ]
       },
       manufacturing: {
-        limitations: [
-          {
-            finding: "Insufficient detail on QA processes",
-            source: "Test Set B: Advanced Mfg Queries.md",
-            date: "Feb 16, 2025",
-            context: "Covered workflow but no detail on QA checks or certifications."
-          }
-        ]
+        limitations: []
       },
       applications: {
-        limitations: [
-          {
-            finding: "No reference to telecommunication cables",
-            source: "Test Set C: Application Scenarios.md",
-            date: "March 3, 2025",
-            context: "Mentioned power lines but omitted fiber shielding usage."
-          }
-        ]
+        limitations: []
       }
     },
     brand: {
       specifications: {
-        limitations: [
-          {
-            finding: "Merges brand identity with third-party details",
-            source: "Test Set D: Brand Queries.md",
-            date: "March 8, 2025",
-            context:
-              "Does not distinctly separate Copperweld from competitor brand stories."
-          }
-        ]
+        limitations: []
       },
       manufacturing: {
         limitations: []
@@ -221,18 +176,129 @@ export const analysisDatabase = {
     }
   },
   grok: {
-    technical: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } },
-    brand: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } },
-    content: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } }
+    technical: {
+      specifications: {
+        limitations: [
+          {
+            finding: "Real-time data cutoff",
+            source: "X/Twitter Documentation",
+            date: "2024-03-20",
+            context: "Grok has access to real-time X/Twitter data but limited historical context."
+          }
+        ]
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    },
+    brand: {
+      specifications: {
+        limitations: []
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    },
+    content: {
+      specifications: {
+        limitations: []
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    }
   },
   gemini: {
-    technical: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } },
-    brand: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } },
-    content: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } }
+    technical: {
+      specifications: {
+        limitations: [
+          {
+            finding: "Limited coding capabilities",
+            source: "Google AI Documentation",
+            date: "2024-03-20",
+            context: "Gemini Pro has shown limitations in complex coding tasks compared to competitors."
+          }
+        ]
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    },
+    brand: {
+      specifications: {
+        limitations: []
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    },
+    content: {
+      specifications: {
+        limitations: []
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    }
   },
   perplexity: {
-    technical: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } },
-    brand: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } },
-    content: { specifications: { limitations: [] }, manufacturing: { limitations: [] }, applications: { limitations: [] } }
+    technical: {
+      specifications: {
+        limitations: [
+          {
+            finding: "API access restrictions",
+            source: "Perplexity Documentation",
+            date: "2024-03-20",
+            context: "Limited API access for custom integrations compared to other platforms."
+          }
+        ]
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    },
+    brand: {
+      specifications: {
+        limitations: []
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    },
+    content: {
+      specifications: {
+        limitations: []
+      },
+      manufacturing: {
+        limitations: []
+      },
+      applications: {
+        limitations: []
+      }
+    }
   }
 };

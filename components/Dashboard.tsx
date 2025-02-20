@@ -12,8 +12,8 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { platformData } from '@/lib/data';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { platformData } from '../src/lib/dashboardData';
 
 export default function Dashboard() {
   const [selectedMetric, setSelectedMetric] = useState<'technical' | 'brand' | 'content'>(
@@ -21,7 +21,7 @@ export default function Dashboard() {
   );
 
   // Prepare chart data for Recharts
-  const chartData = platformData.map((platform) => ({
+  const chartData = platformData.map((platform: { name: string; currentScore: Record<string, number> }) => ({
     name: platform.name,
     score: platform.currentScore[selectedMetric]
   }));
@@ -37,7 +37,7 @@ export default function Dashboard() {
           <div>
             <h4 className="font-medium text-green-600 mb-1">Strengths</h4>
             <ul className="list-disc pl-5 space-y-1">
-              {analysisForMetric.strengths.map((strength, idx) => (
+              {analysisForMetric.strengths.map((strength: string, idx: number) => (
                 <li key={idx} className="text-sm">
                   {strength}
                 </li>
@@ -47,7 +47,7 @@ export default function Dashboard() {
           <div>
             <h4 className="font-medium text-red-600 mb-1">Weaknesses</h4>
             <ul className="list-disc pl-5 space-y-1">
-              {analysisForMetric.weaknesses.map((weakness, idx) => (
+              {analysisForMetric.weaknesses.map((weakness: string, idx: number) => (
                 <li key={idx} className="text-sm">
                   {weakness}
                 </li>
@@ -66,7 +66,7 @@ export default function Dashboard() {
         <h2 className="text-xl font-semibold">Platform Performance</h2>
         <select
           value={selectedMetric}
-          onChange={(e) => setSelectedMetric(e.target.value as any)}
+          onChange={(e) => setSelectedMetric(e.target.value as 'technical' | 'brand' | 'content')}
           className="border rounded p-2"
         >
           <option value="technical">Technical Accuracy</option>
