@@ -1,25 +1,26 @@
-'use client';
+"use client";
 
-
-// etc.
 import React, { useState } from 'react';
 import { analysisDatabase } from '@/lib/data';
 
-const QueryInterface = () => {
+export default function QueryInterface() {
   const [platform, setPlatform] = useState('chatgpt');
   const [category, setCategory] = useState('technical');
   const [subcategory, setSubcategory] = useState('specifications');
-  
-  const findings = analysisDatabase[platform]?.[category]?.[subcategory]?.limitations || [];
+
+  // Safely access nested data
+  const findings =
+    analysisDatabase?.[platform]?.[category]?.[subcategory]?.limitations || [];
 
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-semibold mb-4">Query Analysis Results</h2>
-      
+
+      {/* Dropdowns for platform, category, subcategory */}
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">Platform</label>
-          <select 
+          <select
             value={platform}
             onChange={(e) => setPlatform(e.target.value)}
             className="w-full border rounded p-2"
@@ -34,7 +35,7 @@ const QueryInterface = () => {
 
         <div>
           <label className="block text-sm font-medium mb-1">Category</label>
-          <select 
+          <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="w-full border rounded p-2"
@@ -47,7 +48,7 @@ const QueryInterface = () => {
 
         <div>
           <label className="block text-sm font-medium mb-1">Subcategory</label>
-          <select 
+          <select
             value={subcategory}
             onChange={(e) => setSubcategory(e.target.value)}
             className="w-full border rounded p-2"
@@ -59,9 +60,13 @@ const QueryInterface = () => {
         </div>
       </div>
 
+      {/* Display Findings */}
       <div className="mt-6">
         <h3 className="text-lg font-medium mb-3">Findings</h3>
         <div className="space-y-4">
+          {findings.length === 0 && (
+            <p className="text-gray-600">No limitations found for this selection.</p>
+          )}
           {findings.map((finding, idx) => (
             <div key={idx} className="border rounded-lg p-4 bg-white">
               <p className="font-medium text-red-600 mb-2">{finding.finding}</p>
@@ -76,6 +81,4 @@ const QueryInterface = () => {
       </div>
     </div>
   );
-};
-
-export default QueryInterface;
+}
